@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Say Hello') {
       parallel {
-        stage('Say Hello') {
+        stage('Parallel execution') {
           steps {
             sh 'echo "Hello world"'
           }
