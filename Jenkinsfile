@@ -6,6 +6,11 @@ pipeline {
 
   }
   stages {
+       stage('clone down') {
+          steps {
+            stash excludes: '.git', name: 'code'
+          }
+        }
     stage('Say Hello') {
       parallel {
         stage('Parallel execution') {
@@ -16,6 +21,8 @@ pipeline {
 
         stage('build app') {
           steps {
+            unstash 'code'
+            skipDefaultCheckout(true)
             sh '''#! /bin/bash
 gradle clean shadowjar -p app'''
             archiveArtifacts 'app/build/libs/'
@@ -27,6 +34,6 @@ gradle clean shadowjar -p app'''
 
       }
     }
-
+      }
   }
 }
