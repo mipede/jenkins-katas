@@ -31,8 +31,6 @@ gradle clean shadowjar -p app'''
             sh 'ls'
           }
         }
-
-      }
     }
       }
   }
